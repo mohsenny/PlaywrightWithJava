@@ -27,7 +27,7 @@ public class SearchTests {
     }
 
     @Test
-    public void successfulLoginTest() {
+    public void successfulSearch() {
         searchPage.clickCookieAcceptButton();
         searchPage.search("Potato");
         assertThat(searchPage.getSearchField()).containsText("Potato");
