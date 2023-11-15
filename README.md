@@ -26,7 +26,6 @@ To get started with this boilerplate:
    ```bash
    cd PlaywrightWithJava
 
-
 3. Install dependencies:
    ```bash
    cd PlaywrightWithJava
