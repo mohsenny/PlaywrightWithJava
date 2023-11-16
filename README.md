@@ -28,7 +28,7 @@ To get started with this boilerplate:
 
 3. Install dependencies:
    ```bash
-   cd PlaywrightWithJava
+   mvn test
 
 ## Structure
 
