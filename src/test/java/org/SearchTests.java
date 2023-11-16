@@ -15,7 +15,7 @@ public class SearchTests {
     public static void launchBrowser() {
         Playwright playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                .setHeadless(false));
+            .setHeadless(false));
     }
 
     @BeforeEach
@@ -27,16 +27,16 @@ public class SearchTests {
     }
 
     @Test
-    public void successfulSearch() {
+    public void shouldSearchAndNavigateToDifferentResultsFormat() {
         searchPage.clickCookieAcceptButton();
         searchPage.search("Potato");
         assertThat(searchPage.getSearchField()).containsText("Potato");
         searchPage.navigateToImageResults();
-        // more assertions...
+        Assertions.assertTrue(page.url().matches(".*q=Potato&tbm=isch.*$"));
         searchPage.navigateToAllResults();
-        // more assertions...
+        System.out.println(page.url());
         searchPage.navigateToVideoResults();
-        // more assertions...
+        Assertions.assertTrue(page.url().matches(".*q=Potato&tbm=vid.*$"));
     }
 
     @AfterAll

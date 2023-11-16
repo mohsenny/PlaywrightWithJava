@@ -28,7 +28,7 @@ public class SearchPage {
 
     public Locator getMainSearchField() {
         return page.getByLabel(
-            reader.getTranslation("google.search"),
+            reader.getTranslation("search"),
             new Page.GetByLabelOptions().setExact(true)
         );
     }
@@ -41,6 +41,25 @@ public class SearchPage {
         ));
     }
 
+    public Locator getImageResultsButton() {
+        return page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(
+            reader.getTranslation("google.results.images")
+        ).setExact(true));
+    }
+
+    public Locator getVideoResultsButton() {
+        return page.locator("#bqHHPb").getByRole(AriaRole.LINK, new Locator.GetByRoleOptions().setName(
+            reader.getTranslation("google.results.videos")
+        ));
+    }
+
+    public Locator getAllResultsButton() {
+        return page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(
+                reader.getTranslation("google.results.all")
+        ).setExact(true));
+    }
+
+
     // Methods
     public void clickCookieAcceptButton(){
         getCookieSelector().click();
@@ -52,14 +71,14 @@ public class SearchPage {
     }
 
     public void navigateToImageResults() {
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Bilder").setExact(true)).click();
+        getImageResultsButton().click();
     }
 
     public void navigateToAllResults() {
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("All").setExact(true)).click();
+        getAllResultsButton().click();
     }
 
     public void navigateToVideoResults() {
-        page.locator("#bqHHPb").getByRole(AriaRole.LINK, new Locator.GetByRoleOptions().setName("Videos")).click();
+        getVideoResultsButton().click();
     }
 }

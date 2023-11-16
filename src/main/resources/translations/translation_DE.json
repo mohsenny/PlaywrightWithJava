@@ -1,5 +1,8 @@
 {
   "cookie.accept": "Alle akzeptieren",
   "search": "Suche",
-  "google.search": "Google Suche"
+  "google.search": "Google Suche",
+  "google.results.images": "Bilder",
+  "google.results.videos": "Videos",
+  "google.results.all": "All"
 }

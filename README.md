@@ -28,7 +28,12 @@ To get started with this boilerplate:
 
 3. Install dependencies:
    ```bash
+   mvn install
+
+## Running the tests
+   ```bash
    mvn test
+```
 
 ## Structure
 
