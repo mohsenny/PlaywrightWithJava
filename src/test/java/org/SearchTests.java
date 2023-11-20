@@ -2,26 +2,23 @@ package org;
 
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.pages.SearchPage;
+import resources.config.PlaywrightExtension;
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+@ExtendWith(PlaywrightExtension.class)
 public class SearchTests {
     static Browser browser;
     static SearchPage searchPage;
-    static BrowserContext context;
     static Page page;
-
-    @BeforeAll
-    public static void launchBrowser() {
-        Playwright playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-            .setHeadless(false));
-    }
 
     @BeforeEach
     public void createContextAndPage() {
-        context = browser.newContext();
-        page = context.newPage();
+        page = PlaywrightExtension.getPage();
         searchPage = new SearchPage(page);
         page.navigate("https://www.google.com");
     }
@@ -34,7 +31,6 @@ public class SearchTests {
         searchPage.navigateToImageResults();
         Assertions.assertTrue(page.url().matches(".*q=Potato&tbm=isch.*$"));
         searchPage.navigateToAllResults();
-        System.out.println(page.url());
         searchPage.navigateToVideoResults();
         Assertions.assertTrue(page.url().matches(".*q=Potato&tbm=vid.*$"));
     }
@@ -42,6 +38,6 @@ public class SearchTests {
     @AfterAll
     public static void tearDown() {
         page.close();
-        browser.close();
+        PlaywrightExtension.getBrowser().close();
     }
 }
